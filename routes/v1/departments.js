@@ -10,7 +10,7 @@ router.route('/departments')
   	.then(function(value){
   		res.json(value);	
   	})
-  	.done();  	
+  	.done();
   });
 
 router.route('/departments/:user')
@@ -19,7 +19,7 @@ router.route('/departments/:user')
   	.then(function(value){
   		res.json(value);
   	}) 
-  	.done(); 	  	
+  	.done();
   });
 
 module.exports = router;
