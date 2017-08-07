@@ -10,7 +10,6 @@ var router = express.Router();
  *     description: Gets all departments
  *     produces:
  *       - application/json
- *     parameters:
  *     responses:
  *       200:
  *         description: Departments

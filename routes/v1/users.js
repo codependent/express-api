@@ -10,7 +10,6 @@ var router = express.Router();
  *     description: Gets all users
  *     produces:
  *       - application/json
- *     parameters:
  *     responses:
  *       200:
  *         description: Users
