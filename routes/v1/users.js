@@ -5,22 +5,21 @@ var router = express.Router();
 
 /* GET users listing. */
 router.route('/users')
-  .get(function(req, res, next){
-  	console.log("aquiiiiiiiii1")
+  .get( (req, res, next) => {
   	usersService.getAll()
   	.then(function(value){
-  		console.log("aquiiiiiiiii2")
   		res.json(value);	
   	})
   	.done();  	
   });
 
 router.route('/users/:user')
-  .get(function(req, res, next){
+  .get( (req, res, next) => {
   	usersService.get(req.params.user)
   	.then(function(value){
   		res.json(value);
-  	})  	  	
+  	})
+  	.done();  	  	
   });
 
 module.exports = router;
