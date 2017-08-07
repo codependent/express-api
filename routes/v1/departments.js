@@ -6,12 +6,19 @@ var router = express.Router();
 /* GET departments listing. */
 router.route('/departments')
   .get(function(req, res, next){
-  	res.json(departmentsService.getAll());
+  	departmentsService.getAll()
+  	.then(function(value){
+  		res.json(value);	
+  	})
+  	.done();  	
   });
 
 router.route('/departments/:user')
   .get(function(req, res, next){
-  	res.json(departmentsService.get(req.params.user));
+  	departmentsService.get(req.params.user)
+  	.then(function(value){
+  		res.json(value);
+  	})  	  	
   });
 
 module.exports = router;

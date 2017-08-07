@@ -1,7 +1,12 @@
-exports.getAll = function(){
-	return [ {"user" : "Alice"}, {"user" : "Bob"} ];
-}
+var Q = require('q');
 
+exports.getAll = function(){
+	return Q.fcall( function(){
+		return [ {"name" : "Alice"}, {"name" : "Bob"} ]
+	});
+}
 exports.get = function(uid){
-	return {"name" : uid};
+	return Q.fcall( function(){
+		return {"name" : uid};
+	});
 }
