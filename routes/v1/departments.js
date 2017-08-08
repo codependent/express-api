@@ -1,7 +1,6 @@
-var express = require('express');
-var departmentsService = require('../../services/departments');
-
-var router = express.Router();
+const express = require('express');
+const departmentsService = require('../../services/departments');
+const router = express.Router();
 
 /**
  * @swagger
@@ -17,7 +16,7 @@ var router = express.Router();
 router.route('/departments')
   .get( (req, res, next) => {
   	departmentsService.getAll()
-  	.then(function(value){
+  	.then( (value) => {
   		res.json(value);	
   	})
   	.done();
@@ -43,7 +42,7 @@ router.route('/departments')
 router.route('/departments/:departmentId')
   .get( (req, res, next) => {
   	departmentsService.get(req.params.departmentId)
-  	.then(function(value){
+  	.then( (value) => {
   		res.json(value);
   	}) 
   	.done();

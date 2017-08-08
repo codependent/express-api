@@ -1,11 +1,11 @@
-var Q = require('q');
+const Q = require('q');
 
-exports.getAll = function(){
+exports.getAll = () => {
 	return Q.fcall( function(){
 		return [ {"name" : "Alice"}, {"name" : "Bob"} ]
 	});
 }
-exports.get = function(uid){
+exports.get = (uid) => {
 	return Q.fcall( function(){
 		return {"name" : uid};
 	});

@@ -1,7 +1,6 @@
-var express = require('express');
-var usersService = require('../../services/users');
-
-var router = express.Router();
+const express = require('express');
+const usersService = require('../../services/users');
+const router = express.Router();
 
 /**
  * @swagger
@@ -17,7 +16,7 @@ var router = express.Router();
 router.route('/users')
   .get( (req, res, next) => {
   	usersService.getAll()
-  	.then(function(value){
+  	.then((value) => {
   		res.json(value);	
   	})
   	.done();  	
@@ -43,7 +42,7 @@ router.route('/users')
 router.route('/users/:user')
   .get( (req, res, next) => {
   	usersService.get(req.params.user)
-  	.then(function(value){
+  	.then( (value) => {
   		res.json(value);
   	})
   	.done();  	  	
