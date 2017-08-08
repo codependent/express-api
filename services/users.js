@@ -1,12 +1,8 @@
-const Q = require('q');
+const starWarsClient = require('./client/star-wars-client');
 
 exports.getAll = () => {
-	return Q.fcall( function(){
-		return [ {"name" : "Alice"}, {"name" : "Bob"} ]
-	});
+	return starWarsClient.getAll()
 }
 exports.get = (uid) => {
-	return Q.fcall( function(){
-		return {"name" : uid};
-	});
+	return starWarsClient.get(uid);
 }
