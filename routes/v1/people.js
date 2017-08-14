@@ -1,5 +1,5 @@
 const express = require('express');
-const usersService = require('../../services/users');
+const peopleService = require('../../services/people');
 const router = express.Router();
 
 /**
@@ -15,7 +15,7 @@ const router = express.Router();
  */
 router.route('/users')
   .get( (req, res, next) => {
-  	usersService.getAll()
+  	peopleService.getAll()
   	.then((value) => {
   		res.json(value);	
   	})
@@ -41,11 +41,39 @@ router.route('/users')
  */
 router.route('/users/:user')
   .get( (req, res, next) => {
-  	usersService.get(req.params.user)
+  	peopleService.get(req.params.user)
   	.then( (value) => {
   		res.json(value);
   	})
   	.done();  	  	
+  });
+
+module.exports = router;
+
+/**
+ * @swagger
+ * /users/{user}/films:
+ *   get:
+ *     description: Gets the user films
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: user
+ *         description: Username
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: User found
+ */
+router.route('/users/:user/films')
+  .get( (req, res, next) => {
+    peopleService.getFilms(req.params.user)
+    .then( (value) => {
+      res.json(value);
+    })
+    .done();        
   });
 
 module.exports = router;

@@ -6,3 +6,7 @@ exports.getAll = () => {
 exports.get = (uid) => {
 	return starWarsClient.get(uid);
 }
+
+exports.getFilms = (uid) => {
+	return starWarsClient.getFilms(uid);
+}
