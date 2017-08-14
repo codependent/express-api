@@ -23,16 +23,16 @@ exports.getFilms = (uid) => {
 
 	httpGet("https://swapi.co/api/people/"+uid, args)
 	.then( (data) => {
-		toReturn = data;
 		data.films.forEach(function (filmsIt){
-			var observable = Rx.Observable.defer(function () {
-				return httpGet(filmsIt, args);		
-  			});
+			var observable = Rx.Observable.defer( () => {
+				return httpGet(filmsIt, args);
+			});
+  			console.log("pushing")
   			observables.push(observable);
 		});
 		var observableFinal = Rx.Observable.zip(...observables, function() {
-			toReturn.films = arguments;
-			return arguments;
+			toReturn = Array.prototype.slice.call(arguments);;
+			return toReturn;
 		}).subscribe(
 		    (x) => {},
 		    (err) => {console.log('Error: ' + err);},
@@ -44,10 +44,11 @@ exports.getFilms = (uid) => {
 }
 
 function httpGet(url, args){
+	console.time("httpGet Time -> " + url);
 	var deferred = Q.defer();
 	console.log("Calling " + url);
 	client.get(url, args, (data, response) => {
-		console.log("Got " + url);
+		console.timeEnd("httpGet Time -> " + url);
 		deferred.resolve(data);
 	});
 	return deferred.promise;
